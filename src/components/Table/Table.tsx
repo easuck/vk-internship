@@ -1,7 +1,6 @@
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import {getUsers} from "../../api/usersRequests";
 import './styles.scss';
-import axios from "axios";
 
 type Props = {
     fields: string[];   
@@ -10,23 +9,11 @@ type Props = {
 const Table = ({fields}: Props) => {
     const {data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage} = useInfiniteQuery({
         queryKey: ['users'],
-        queryFn: async ({ pageParam = 1 }) => {
-            const res = await axios.get(`http://localhost:3000/users`, {
-              params: {
-                _page: pageParam,
-                _per_page: 25,
-            }});
-            console.log(res.data.data);
-            return {
-                data: res.data.data,
-                next: pageParam + 1,
-              };
-        },
-        initialPageParam: 1,
-        getNextPageParam: (lastPage) => lastPage.next
+        queryFn: getUsers,
+        initialPageParam: 1,    
+        getNextPageParam: (lastPage) => lastPage.next == null ? null : lastPage.next
     });
     return(
-        
         <>
         <table className="Table">
             <thead>
@@ -59,14 +46,14 @@ const Table = ({fields}: Props) => {
             </tbody>
         </table>
          <button
-          onClick={() => fetchNextPage()}
-          disabled={!hasNextPage || isFetching}
+            onClick={() => fetchNextPage()}
+            disabled={!hasNextPage || isFetching}
         >
-          {isFetchingNextPage
-            ? 'Loading more...'
-            : hasNextPage
-              ? 'Load More'
-              : 'Nothing more to load'}
+            {isFetchingNextPage
+                ? 'Loading more...'
+                : hasNextPage
+                ? 'Load More'
+                : 'Nothing more to load'}
         </button>
         </>
     );
