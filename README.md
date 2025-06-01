@@ -1,54 +1,37 @@
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
+# Тестовое задание на стажировку VK на позицию frontend-разработчик
+### Использованные библиотеки:
+- json server (для api)
+- axios (для работы с сетью)
+- tanstack query (для работы с сетью, а также для реализации infinite loader)
+- react hook form (для работы с формой)
+- scss (для стилизации, совсем немного)
+Не нашел целесообразным использовать клиентский state manager: все приложение находится на одной странице, не нужно хранить глобальное состояние компонентов.
+### Структура JSON:
+```
+{
+  data: [
+    {id: string, ...anyOtherFields},
+    {id: string, ...anyOtherFields},
+    {id: string, ...anyOtherFields},
+    ...
+ ]
+}
+```
+Форма и таблица имеют гибкую структуру и подстраиваются под струкруту JSON. Главное указать id в формате строки, потому что JSON Server автоматически добавляет их к записям в таком виде. 
+У меня не получилось сделать гибкие инпуты, я не совсем понял как это можно реализовать, чтобы учесть любой тип данных, поэтому они все по умолчанию с type=text. Валидация на required есть на каждом поле.
+Изначально в db.json хранятся данные со следующей структурой:
+```
+{
+      id: string
+      name: string
+      surname: string
+      email: "string
+      sex: string
+      birthdate: Date (но по факту string)
     },
-  },
-})
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+### Запуск приложения:
+1. Скачать и распаковать архив
+2. Установить зависимости с помощью команды ```npm install```
+3. Заполнить db.json своими данными, если необходимо
+4. Запустить JSON Server с помощью команды ```npx json-server db.json ```
