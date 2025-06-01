@@ -27,9 +27,9 @@ const Form = () => {
                 fields.map(field => {
                     return(
                         <div className="Form_inputWrapper">
-                            <label>{field[0]}</label>
+                            <label>{field[0].toUpperCase()}</label>
                             <input {...register(field[0], {required: true})}/>
-                            {errors[field[0]] && <div>Обязательное поле</div>}
+                            {errors[field[0]] && <div className="Form_inputWrapper_error">Обязательное поле</div>}
                         </div>
                     )
                 })

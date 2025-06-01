@@ -32,7 +32,7 @@ const Table = () => {
                     <tr>
                     {
                         columns.map(field => {
-                            return <th key={field}>{field}</th>
+                            return <th key={field}>{field.toUpperCase()}</th>
                         })
                     }
                     </tr>

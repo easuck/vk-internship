@@ -1,6 +1,17 @@
 .Table{
-      td {
+    width: 100%;
+    margin-top: 100px;
+    th{
+        font-family: 'Roboto', 'sans-serif';
+        font-size: 18px;
+        font-weight: 400;
+    }
+    td{
+        font-family: 'Roboto', 'sans-serif';
+        font-size: 18px;
+        font-weight: 300;
         padding: 8px; 
         background: #f1f1f1; 
-      }
+    }
+    
 }

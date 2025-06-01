@@ -1,8 +1,31 @@
 .Form{
     display: flex;
     flex-direction: column;
+    gap: 15px;
+    width: 50%;
     &_inputWrapper{
         display: flex;
-        flex-direction: column;    
+        flex-direction: column;
+        gap: 5px;
+        & > label{
+            font-family: 'Roboto', 'sans-serif';
+            font-size: 18px;
+            font-weight: 500;
+        }
+        & > input{
+            height: 40px;
+            font-family: 'Roboto', 'sans-serif';
+            font-size: 18px;
+        }   
+        &_error{
+            font-family: 'Roboto', 'sans-serif';
+            font-size: 14px;
+            color: rgb(200, 0, 0);
+        }
+    }
+    & > input{
+        height: 40px;
+        font-family: 'Roboto', 'sans-serif';
+        font-size: 18px;
     }
 }
