@@ -12,10 +12,12 @@ const Form = () => {
         register,
         handleSubmit,
         formState: { errors },
+        reset
     } = useForm();
 
     const mutation = useMutation({
-        mutationFn: addUser
+        mutationFn: addUser,
+        onSuccess: () => {reset()}
     })
     const onSubmit: SubmitHandler<any> = (data) => {
         mutation.mutate(data);
