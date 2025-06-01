@@ -1,0 +1,42 @@
+import { useQuery } from "@tanstack/react-query";
+import {getUsers} from "../../api/usersRequests";
+
+type Props = {
+    fields: string[];   
+}
+
+const Table = ({fields}: Props) => {
+    const {data} = useQuery({queryKey: ['users'], queryFn: getUsers})
+    return(
+        <table>
+            <thead>
+                <tr>
+                {
+                    fields.map(field => {
+                        return <th key={field}>{field}</th>
+                    })
+                }
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    data?.map(row => {
+                        return(
+                            <tr key={row.id}>
+                                {
+                                    Object.values(row).map(value => {
+                                        return(
+                                            <td key={value}>{value}</td>
+                                        )
+                                    })
+                                }
+                            </tr>
+                        )
+                    })
+                }
+            </tbody>
+        </table>
+    );
+}
+
+export default Table;
