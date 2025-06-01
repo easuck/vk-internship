@@ -1,5 +1,5 @@
 {
-  "users": [ 
+  "users": [
     {
       "id": "683bfb3314d1b2ea1ca684f6",
       "name": "Deanna",
@@ -799,6 +799,14 @@
       "email": "lancasterzamora@kage.com",
       "sex": "male",
       "birthdate": "2006-07-17"
+    },
+    {
+      "id": "c7a5",
+      "name": "sdsdgs",
+      "surname": "sdgdsgs",
+      "email": "dgsdgdsgs",
+      "sex": "male",
+      "birthdate": "2025-06-01"
     }
   ]
 }
