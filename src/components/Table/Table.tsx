@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import {getUsers} from "../../api/usersRequests";
+import './styles.scss';
 
 type Props = {
     fields: string[];   
@@ -8,7 +9,7 @@ type Props = {
 const Table = ({fields}: Props) => {
     const {data} = useQuery({queryKey: ['users'], queryFn: getUsers})
     return(
-        <table>
+        <table className="Table">
             <thead>
                 <tr>
                 {
@@ -18,7 +19,7 @@ const Table = ({fields}: Props) => {
                 }
                 </tr>
             </thead>
-            <tbody>
+            <tbody className="Table_data">
                 {
                     data?.map(row => {
                         return(
