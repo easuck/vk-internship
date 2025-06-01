@@ -1,7 +1,7 @@
 import axios from "./axios";
 
 export async function getUsers({pageParam = 1}){
-    const res = await axios.get(`/users`, {
+    const res = await axios.get(`/data`, {
         params: {
           _page: pageParam,
           _per_page: 25,
@@ -14,6 +14,6 @@ export async function getUsers({pageParam = 1}){
 }
 
 export async function addUser(data: any){
-    const response = await axios.post('/users', data);
+    const response = await axios.post('/data', data);
     return response.data;
 }

@@ -4,14 +4,11 @@ import Form from './components/Form/Form';
 
 function App() {
     const queryClient = new QueryClient();
-    const fields = ['ID', 'Name', 'Surname', 'Email', 'Sex', 'Birthdate'];
     return (
         <QueryClientProvider client={queryClient}>
             <div>
                 <Form/>
-                <Table 
-                    fields={fields}
-                />
+                <Table/>
             </div>
         </QueryClientProvider>
         

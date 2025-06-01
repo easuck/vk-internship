@@ -1,25 +1,17 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
-import {getUsers} from "../../api/usersRequests";
 import './styles.scss';
+import useData from "../../hooks/useData";
 
-type Props = {
-    fields: string[];   
-}
+const Table = () => {
+    const {data, hasNextPage, fetchNextPage, isFetching, isFetchingNextPage} = useData();
+    const columns = data?.pages?.[0].data[0] ? Object.keys(data.pages[0].data[0]) : [];
 
-const Table = ({fields}: Props) => {
-    const {data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage} = useInfiniteQuery({
-        queryKey: ['users'],
-        queryFn: getUsers,
-        initialPageParam: 1,    
-        getNextPageParam: (lastPage) => lastPage.next == null ? null : lastPage.next
-    });
     return(
         <>
         <table className="Table">
             <thead>
                 <tr>
                 {
-                    fields.map(field => {
+                    columns.map(field => {
                         return <th key={field}>{field}</th>
                     })
                 }
